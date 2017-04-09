@@ -1,22 +1,32 @@
+<?php
+   session_start();
+    
+      if(isset($_SESSION['logged']) && $_SESSION['logged'] == TRUE){
+      header('Location: logged.php');
+      exit();
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Simple login form</title>
-        <meta charset="UTF-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-        <link href="style.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <div id="container">
-            <form>
-                
-                <input type="text" placeholder="Login" onfocus="this.placeholder=''"  onblur="this.placeholder='Login'">
-                
-                <input type="password" placeholder="Password" onfocus="this.placeholder=''"  onblur="this.placeholder='Password'">
-                
-                <input type="submit" value="Login"
-                       
-            </form>
-        </div>
-    </body>
+   <head>
+      <title>Simple login form</title>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+      <link href="style.css" rel="stylesheet" type="text/css" />
+   </head>
+   <body>
+      <div id="container">
+         <form action="logged.php" method="post">
+            <input type="text" name="login" placeholder="Login" onfocus="this.placeholder=''"  onblur="this.placeholder='Login'">
+            <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''"  onblur="this.placeholder='Password'">
+            <input type="submit" value="Login">
+         </form>
+      </div>
+        
+      <?php
+         if(isset($_SESSION['error'])) echo $_SESSION['error'];
+      ?>
+        
+   </body>
 </html>
